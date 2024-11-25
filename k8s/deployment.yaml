@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: fish-game-backend
+  labels:
+    app: fish-game-backend
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: fish-game-backend
+  template:
+    metadata:
+      labels:
+        app: fish-game-backend
+    spec:
+      containers:
+      - name: fish-game-backend
+        image: eddiewang1358/fish-game-backend:latest  # 更新为你的 Docker Hub 镜像
+        ports:
+        - containerPort: 8000
+        env:
+        - name: DJANGO_SETTINGS_MODULE
+          value: "fishing_game_backend.settings"
